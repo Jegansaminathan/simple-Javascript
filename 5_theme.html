@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+      }
+      body {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+      }
+      .nav {
+        position: absolute;
+        width: 100%;
+        height: 10%;
+        display: flex;
+        justify-content: space-around;
+      }
+      button {
+        width: 20%;
+        height: 100%;
+        border: 2px solid black;
+        background-color: transparent;
+        border-radius: 20px;
+      }
+      .layout1 {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-image: url("img/chibi-luffy-one-3840x2160-13063.png");
+      }
+      .luffy {
+        width: 100%;
+        height: 100%;
+        padding: 50px;
+        padding-top: 8%;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(45deg, #af6b372d, #ff3c0054);
+        box-shadow: 0 0 15px #ff3d00;
+      }
+      .luffy h2, .luffy h1 {
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        text-shadow: 2px 2px 4px #b33a00;
+      }
+      p,
+      ul {
+        font-size: 1.1em;
+        line-height: 1.5;
+      }
+      ul li {
+        margin-bottom: 8px;
+      }
+      .luffy strong {
+        color: #ffe066;
+      }
+      .layout2 {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-image: url("img/roronoa-zoro-5120x2880-18692.jpg");
+      }
+      .zoro {
+        width: 100%;
+        height: 100%;
+        padding: 50px;
+        padding-top: 8%;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(45deg, #388e3c5b, #81c78446);
+        box-shadow: 0 0 15px #2e7d32;
+      }
+      .zoro h2, .zoro h1 {
+        font-family: "Trebuchet MS", sans-serif;
+        text-shadow: 2px 2px 4px #468149;
+      }
+      .zoro strong {
+        color: #21c7e4;
+      }
+      .layout3 {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-image: url("img/spider-man-marvel-superheroes-4000x2500-1721.jpg");
+      }
+      .spi {
+        width: 100%;
+        height: 100%;
+        padding: 50px;
+        padding-top: 8%;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(45deg, #d32f2f4f, #1976d243);
+        box-shadow: 0 0 15px #1565c0;
+      }
+      .spi h2, .spi h1 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        text-shadow: 2px 2px 4px #e73b3b;
+      }
+      .spi strong {
+        color: #e53f73;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <button onclick="fun('1')">theme-1</button>
+      <button onclick="fun('2')">theme-2</button>
+      <button onclick="fun('3')">theme-3</button>
+    </div>
+    <div class="layout1">
+      <div class="luffy">
+        <h1>What is Anime?</h1>
+        <p>
+          Anime is a style of animation that originated in Japan and has become
+          popular worldwide. It features colorful artwork, vibrant characters,
+          and imaginative storylines. Anime covers a wide range of genres,
+          appealing to audiences of all ages.
+        </p>
+
+        <h2>Popular Genres</h2>
+        <ul>
+          <li>Action and Adventure</li>
+          <li>Romance</li>
+          <li>Fantasy and Science Fiction</li>
+          <li>Slice of Life</li>
+          <li>Horror</li>
+          <li>Comedy</li>
+        </ul>
+
+        <h2>Famous Anime Series</h2>
+        <p>
+          Some well-known anime series include <strong>Naruto</strong>,
+          <strong>One Piece</strong>, <strong>Attack on Titan</strong>,
+          <strong>Dragon Ball</strong>, and <strong>My Hero Academia</strong>.
+        </p>
+
+        <h2>The Influence of Anime</h2>
+        <p>
+          Anime has influenced pop culture around the world, inspiring movies,
+          fashion, video games, and conventions celebrating Japanese animation.
+        </p>
+      </div>
+    </div>
+    <script>
+      let lr = document.getElementsByTagName("div");
+
+      let fun = (el) => {
+        if (el == "1") {
+          lr[1].className = "layout1";
+          lr[2].className = "luffy";
+          
+        } else if (el == "2") {
+          lr[1].className = "layout2";
+          lr[2].className = "zoro";
+        } else if (el == "3") {
+          lr[1].className = "layout3";
+          lr[2].className = "spi";
+        }
+      };
+    </script>
+  </body>
+</html>

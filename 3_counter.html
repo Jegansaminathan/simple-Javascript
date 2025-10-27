@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .counterbox{
+            width: 30%;
+            height: 45vh;
+            border: 2px solid black;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content:space-around;
+        }
+        h1{
+            height: 10%;
+            text-align: center;
+            text-transform: uppercase;
+            color: rgb(255, 106, 0);
+        }
+        input{
+            width: 100%;
+            height: 15%;
+            text-align: center;
+            font-size: xx-large;
+            border: none;
+        }
+        .cbtn{
+            width: 100%;
+            height: 20%;
+            display: flex;
+            justify-content: space-around;
+        }
+        .cbtn button{
+            width: 20%;
+            height: 100%;
+            border-radius: 20px;
+            border: none;
+            background-color: rgba(214, 186, 43, 0.612);
+            font-size: x-large;
+            color:cornsilk;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="counterbox">
+        <h1>counter</h1>
+        <input type="text" readonly value="00">
+        <div class="cbtn">
+            <button onclick="fun('+')">++</button>
+            <button onclick="fun('-')">--</button>
+            <button onclick="fun('.')">reset</button>
+        </div>
+    </div>
+    <script>
+        let out=document.getElementsByTagName("input")[0]
+        let c=0
+        let fun=(el)=>{
+            if(el=='+'){
+                c++
+                out.value=c<10?`0${c}`:c
+            }
+             else if(el=='-'){
+                c=c>1?--c:0
+                out.value=c<10?`0${c}`:c
+            }
+            else if(el=='.'){
+                c=0
+                out.value=`00`
+            }
+        }
+    </script>
+
+</body>
+</html>
