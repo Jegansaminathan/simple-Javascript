@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .inp {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="inp">
+      <input type="text" placeholder="enter text to add" />
+      <button onclick="fun('+')">add</button>
+    </div>
+    <div class="lis">
+      <ul></ul>
+    </div>
+    <script>
+      let ir = document.querySelector("input");
+      let lr = document.querySelector("ul");
+      let arr = [];
+
+      let dis = (el) => {
+        let s = "";
+        for (i of el) {
+          console.log(i);
+          s=s + `<li>${i}</li>`;
+        }
+        lr.innerHTML = s;
+      };
+      let fun = (el) => {
+        arr.push(ir.value);
+        dis(arr);
+        ir.value = "";
+      };
+    </script>
+  </body>
+</html>

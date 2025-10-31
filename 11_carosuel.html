@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        padding: 0%;
+        margin: 0%;
+        box-sizing: border-box;
+      }
+      body {
+        width: 100%;
+        height: 100vh;
+        padding-top: 20px;
+        display: flex;
+        justify-content: center;
+      }
+      .banner {
+        width: 90%;
+        height: 98%;
+        position: relative;
+        border-radius: 20px;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+      }
+      .cont {
+        padding: 10px 80px 0px 40px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30%;
+        height: 100%;
+        background: linear-gradient(rgba(232, 160, 50, 0.662));
+        display: flex;
+        flex-direction: column;
+        gap: 10%;
+        border-radius: 20px 0px 0px 20px;
+      }
+      button {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        top: 50%;
+        cursor: pointer;
+        transform: translateY(-50%);
+        border-radius: 60%;
+        overflow: hidden;
+        border: none;
+        z-index: 1;
+        right: -2%;
+      }
+      button.l {
+        left: -2%;
+      }
+      button img {
+        width: 100%;
+        height: 100%;
+      }
+      .dots {
+        position: absolute;
+        width: 60%;
+        height: 20%;
+        bottom: 20%;
+        left: 50%;
+        transform: translate(-50%, 80%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="banner">
+      <img src="./img/wolverine-deadpool-3840x2400-18286.jpeg" alt="" />
+      <button class="l" onclick="bwr()"><img src="./img/btnl.jpeg" /></button>
+      <button class="r" onclick="fwr()"><img src="./img/btnr.jpeg" /></button>
+      <div class="cont">
+        <h1>Wolverine</h1>
+        <p>
+          Wolverine is a popular Marvel Comics character — one of the most
+          famous members of the X-Men.
+        </p>
+        <p>
+          Hugh Jackman in the X-Men film series (2000–2017, and returning in
+          Deadpool 3 / Deadpool & Wolverine, 2024)
+        </p>
+      </div>
+      <div class="dots">
+        <i onclick="dc(0)" class="fa-duotone fa-regular fa-circle"></i>
+        <i onclick="dc(1)" class="fa-duotone fa-solid fa-circle"></i>
+        <i onclick="dc(2)" class="fa-duotone fa-solid fa-circle"></i>
+        <i onclick="dc(3)" class="fa-duotone fa-solid fa-circle"></i>
+        <i onclick="dc(4)" class="fa-duotone fa-solid fa-circle"></i>
+        <i onclick="dc(5)" class="fa-duotone fa-solid fa-circle"></i>
+        <i onclick="dc(6)" class="fa-duotone fa-solid fa-circle"></i>
+        <i onclick="dc(7)" class="fa-duotone fa-solid fa-circle"></i>
+        <i onclick="dc(8)" class="fa-duotone fa-solid fa-circle"></i>
+      </div>
+    </div>
+  </body>
+  <script>
+    let bc = [
+      {
+        img: "./img/wolverine-deadpool-3840x2400-18286.jpeg",
+        cap: "Wolverine",
+        p1: "Wolverine is a popular Marvel Comics character — one of the most famous members of the X-Men.",
+        p2: "Hugh Jackman portrayed him in the X-Men film series (2000–2017) and returns in Deadpool & Wolverine (2024).",
+      },
+      {
+        img: "./img/zenitsu-agatsuma-5120x2880-20236.jpg",
+        cap: "Zenitsu",
+        p1: "Zenitsu Agatsuma (我妻 善逸) is one of the main characters from the anime Demon Slayer: Kimetsu no Yaiba, created by Koyoharu Gotouge.",
+        p2: "Zenitsu has an exceptional sense of hearing — he can detect faint sounds and sense emotions through them.",
+      },
+      {
+        img: "./img/tanjiro-kamado-5120x2880-18381.jpg",
+        cap: "Tanjiro Kamado",
+        p1: "Tanjiro Kamado is the main protagonist of Demon Slayer: Kimetsu no Yaiba, known for his kindness, determination, and strong sense of justice.",
+        p2: "He uses the Water Breathing and Sun Breathing techniques to fight demons and protect his sister Nezuko.",
+      },
+      {
+        img: "./img/spider-man-marvel-superheroes-4000x2500-1721.jpg",
+        cap: "Spider-Man",
+        p1: "Spider-Man, also known as Peter Parker, is one of Marvel’s most iconic superheroes, created by Stan Lee and Steve Ditko.",
+        p2: "Bitten by a radioactive spider, he gains superhuman agility, strength, and spider-sense, fighting crime across New York City.",
+      },
+      {
+        img: "./img/solo-leveling-game-3840x2160-17908.jpeg",
+        cap: "Sung Jin-Woo",
+        p1: "Sung Jin-Woo is the main protagonist of Solo Leveling, a man who starts as the weakest hunter but becomes the most powerful after a mysterious system chooses him.",
+        p2: "He gains the ability to level up endlessly and control an army of shadows, making him nearly unstoppable.",
+      },
+      {
+        img: "./img/naruto-uzumaki-5120x2880-18690.jpg",
+        cap: "Naruto Uzumaki",
+        p1: "Naruto Uzumaki is the main protagonist of the anime and manga Naruto, created by Masashi Kishimoto.",
+        p2: "He’s a ninja from the Hidden Leaf Village who dreams of becoming Hokage, carrying the spirit of the Nine-Tails fox within him.",
+      },
+      {
+        img: "./img/chibi-luffy-one-3840x2160-13063.png",
+        cap: "Monkey D. Luffy",
+        p1: "Monkey D. Luffy is the main protagonist of One Piece, created by Eiichiro Oda.",
+        p2: "He gains rubber-like abilities after eating the Gum-Gum Fruit and dreams of becoming the Pirate King by finding the One Piece.",
+      },
+      {
+        img: "./img/roronoa-zoro-5120x2880-18692.jpg",
+        cap: "Roronoa Zoro",
+        p1: "Roronoa Zoro is a swordsman from One Piece and one of the first members to join Luffy’s Straw Hat Pirates.",
+        p2: "Known for his three-sword style, Zoro dreams of becoming the greatest swordsman in the world.",
+      },
+      {
+        img: "./img/marvels-spider-man-miles-morales-cyberpunk-neon-playstation-3840x2160-3065.jpg",
+        cap: "Miles Morales",
+        p1: "Miles Morales is an alternate Spider-Man from Marvel’s multiverse, first appearing in Ultimate Fallout #4.",
+        p2: "He inherits Spider-Man’s powers along with unique abilities like invisibility and bio-electric venom blasts.",
+      },
+    ];
+    let bimgr = document.querySelector(".banner img");
+    let h1r = document.querySelector(".banner h1");
+    let pr = document.querySelectorAll(".banner p");
+    let dr = document.querySelectorAll(".dots i");
+    let i = 0;
+    let prev = 0;
+    let fwr = () => {
+      dr[prev].className = "fa-duotone fa-solid fa-circle";
+      i++;
+      i = i % bc.length;
+      bimgr.src = bc[i].img;
+      h1r.innerHTML = bc[i].cap;
+      pr[0].innerHTML = bc[i].p1;
+      pr[1].innerHTML = bc[i].p2;
+      dr[i].className = "fa-duotone fa-regular fa-circle";
+      prev=i
+    };
+    setInterval(fwr, 1000);
+    let bwr = () => {
+      if (i == 0) {
+        i = bc.length - 1;
+      } else {
+        i--;
+      }
+      dr[prev].className = "fa-duotone fa-solid fa-circle";
+      bimgr.src = bc[i].img;
+      h1r.innerHTML = bc[i].cap;
+      pr[0].innerHTML = bc[i].p1;
+      pr[1].innerHTML = bc[i].p2;
+      dr[i].className = "fa-duotone fa-regular fa-circle";
+      prev=i
+    };
+    let dc = (el) => {
+      dr[prev].className = "fa-duotone fa-solid fa-circle";
+      bimgr.src = bc[el].img;
+      h1r.innerHTML = bc[el].cap;
+      pr[0].innerHTML = bc[el].p1;
+      pr[1].innerHTML = bc[el].p2;
+      dr[el].className = "fa-duotone fa-regular fa-circle";
+      prev = el;
+    };
+  </script>
+</html>

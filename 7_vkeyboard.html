@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Virtual Keyboard with Special Symbols</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+      .rdis {
+        width: 95%;
+        height: 40vh;
+        background-color: aqua;
+      }
+      .keyboard {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        display: inline-block;
+        background-color: aquamarine;
+      }
+
+      .row {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+
+      .key {
+        background-color: #ddd;
+        border-radius: 5px;
+        box-shadow: inset 0 -3px 0 #bbb;
+        border: 1px solid #ccc;
+        width: 60px;
+        height: 50px;
+        margin: 0 5px;
+        text-align: center;
+        line-height: 50px;
+        cursor: pointer;
+        user-select: none;
+        font-weight: 600;
+        transition: background-color 0.2s ease;
+        position: relative;
+      }
+
+      .key:active {
+        background-color: #bbb;
+        box-shadow: inset 0 3px 5px #999;
+      }
+      .key.extra-wide.keyhold {
+        background-color: #bbb;
+        box-shadow: inset 0 3px 5px #999;
+      }
+
+      /* Special symbols inside number keys */
+      .key .top-symbol {
+        position: absolute;
+        top: -13px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 12px;
+        font-weight: normal;
+        color: #555;
+        user-select: none;
+      }
+
+      .key .main-symbol {
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 18px;
+        user-select: none;
+      }
+
+      /* Wider keys */
+      .key.wide {
+        width: 180px;
+      }
+
+      .key.extra-wide {
+        width: 120px;
+      }
+      .key.extra-wide.spa {
+        width: 820px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="rdis"></div>
+    <div class="keyboard">
+      <!-- Row 1 - Number row with special symbols -->
+      <div class="row">
+        <div class="key" onclick="arkey(['~','`'])">
+          <div class="top-symbol">~</div>
+          <div class="main-symbol">`</div>
+        </div>
+        <div class="key" onclick="arkey(['!','1'])">
+          <div class="top-symbol">!</div>
+          <div class="main-symbol">1</div>
+        </div>
+        <div class="key" onclick="arkey(['@','2'])">
+          <div class="top-symbol">@</div>
+          <div class="main-symbol">2</div>
+        </div>
+        <div class="key" onclick="arkey(['#','3'])">
+          <div class="top-symbol">#</div>
+          <div class="main-symbol">3</div>
+        </div>
+        <div class="key" onclick="arkey(['$','4'])">
+          <div class="top-symbol">$</div>
+          <div class="main-symbol">4</div>
+        </div>
+        <div class="key" onclick="arkey(['%','5'])">
+          <div class="top-symbol">%</div>
+          <div class="main-symbol">5</div>
+        </div>
+        <div class="key" onclick="arkey(['^','6'])">
+          <div class="top-symbol">^</div>
+          <div class="main-symbol">6</div>
+        </div>
+        <div class="key" onclick="arkey(['&','7'])">
+          <div class="top-symbol">&amp;</div>
+          <div class="main-symbol">7</div>
+        </div>
+        <div class="key" onclick="arkey(['*','8'])">
+          <div class="top-symbol">*</div>
+          <div class="main-symbol">8</div>
+        </div>
+        <div class="key" onclick="arkey(['<','9'])">
+          <div class="top-symbol">(</div>
+          <div class="main-symbol">9</div>
+        </div>
+        <div class="key" onclick="arkey(['>','5'])">
+          <div class="top-symbol">)</div>
+          <div class="main-symbol">0</div>
+        </div>
+        <div class="key" onclick="arkey(['_','-'])">
+          <div class="top-symbol">_</div>
+          <div class="main-symbol">-</div>
+        </div>
+        <div class="key" onclick="arkey(['+','='])">
+          <div class="top-symbol">+</div>
+          <div class="main-symbol">=</div>
+        </div>
+        <div class="key wide" onclick="bp(this)">Backspace</div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="row">
+        <div class="key wide" onclick="tab()">Tab</div>
+        <div class="key" onclick="alp('q')">Q</div>
+        <div class="key" onclick="alp('w')">W</div>
+        <div class="key" onclick="alp('e')">E</div>
+        <div class="key" onclick="alp('r')">R</div>
+        <div class="key" onclick="alp('t')">T</div>
+        <div class="key" onclick="alp('y')">Y</div>
+        <div class="key" onclick="alp('u')">U</div>
+        <div class="key" onclick="alp('i')">I</div>
+        <div class="key" onclick="alp('o')">O</div>
+        <div class="key" onclick="alp('p')">P</div>
+        <div class="key" onclick="alp('[')">[</div>
+        <div class="key" onclick="alp(']')">]</div>
+        <div class="key" onclick="alp('\\')">\\</div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="row">
+        <div class="key extra-wide" onclick="hold(this)">Caps Lock</div>
+        <div class="key" onclick="alp('a')">A</div>
+        <div class="key" onclick="alp('s')">S</div>
+        <div class="key" onclick="alp('d')">D</div>
+        <div class="key" onclick="alp('f')">F</div>
+        <div class="key" onclick="alp('g')">G</div>
+        <div class="key" onclick="alp('h')">H</div>
+        <div class="key" onclick="alp('j')">J</div>
+        <div class="key" onclick="alp('k')">K</div>
+        <div class="key" onclick="alp('l')">L</div>
+        <div class="key" onclick="alp(';')">;</div>
+        <div class="key" onclick="alp('\'')">'</div>
+        <div class="key wide" onclick="alp('enter')">Enter</div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="row">
+        <div class="key extra-wide" onclick="hold(this)">Shift</div>
+        <div class="key" onclick="alp('z')">Z</div>
+        <div class="key" onclick="alp('x')">X</div>
+        <div class="key" onclick="alp('c')">C</div>
+        <div class="key" onclick="alp('v')">V</div>
+        <div class="key" onclick="alp('b')">B</div>
+        <div class="key" onclick="alp('n')">N</div>
+        <div class="key" onclick="alp('m')">M</div>
+        <div class="key" onclick="alp(',')">,</div>
+        <div class="key" onclick="alp('.')">.</div>
+        <div class="key" onclick="alp('/')">/</div>
+        <div class="key extra-wide" onclick="hold(this)">Shift</div>
+      </div>
+
+      <!-- Row 5 -->
+      <div class="row">
+        <div class="key extra-wide spa" onclick="alp(' ')">Space</div>
+      </div>
+    </div>
+    <script>
+      let res = document.querySelector("div");
+      let s = "";
+      let ca = false;
+      let sh = false;
+      let hold = (el) => {
+        if (el.innerHTML == "Shift" || el.innerHTML == "Caps Lock") {
+          el.className = "key extra-wide keyhold";
+          if (el.innerHTML == "Shift") {
+            el.innerHTML = "Shift hold";
+            sh = true;
+          } else {
+            el.innerHTML = "Caps Lock hold";
+            ca = true;
+          }
+        } else {
+          el.className = "key extra-wide";
+          if (el.innerHTML == "Caps Lock hold") {
+            el.innerHTML = "Caps Lock";
+            ca = false;
+          } else {
+            el.innerHTML = "Shift";
+            sh = false;
+          }
+        }
+      };
+      let alp = (el) => {
+        if (el == "enter") {
+          s += `<br>`;
+        } else {
+          if (ca) {
+            s += el.toUpperCase();
+            res.innerHTML = s;
+          } else {
+            s += el;
+            res.innerHTML = s;
+          }
+        }
+      };
+      let bp = (el) => {
+        if (s[s.length - 1] == ">" && s[s.length - 4] == "<") {
+          s = s.slice(0, s.length - 4);
+          res.innerHTML = s;
+        } else {
+          s = s.slice(0, s.length - 1);
+          res.innerHTML = s;
+        }
+      };
+      let arkey = (el) => {
+        if (sh) {
+          s += el[0];
+          res.innerHTML = s;
+        } else {
+          s += el[1];
+          res.innerHTML = s;
+        }
+      };
+    </script>
+  </body>
+</html>

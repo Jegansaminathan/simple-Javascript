@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <input type="text" />
+    <button onclick="add()">add</button>
+    <button onclick="upd()" style="display: none;">upd</button>
+    <table></table>
+    <script>
+      let ir = document.querySelector("input");
+      let btnr = document.querySelectorAll("button");
+      let tblr = document.querySelector("table");
+      let arr = [],gid;
+      let dis = () => {
+        let s = "";
+        for (i=0; i<arr.length;i++) {
+          s += `<tr><td>${arr[i]}</td><td onclick="edit(${i})"><i class="fa-solid fa-pen"></i></td><td onclick="del(${i})"><i class="fa-solid fa-trash"></i></td></tr>`;
+        }
+        tblr.innerHTML=s
+      };
+      let add=()=>{
+        arr.push(ir.value)
+        ir.value=''
+        dis()
+      }
+      let edit=(el)=>{
+        ir.value=arr[el]
+        btnr[0].style.display='none'
+        btnr[1].style.display='inline-block'
+        gid=el
+      }
+      let upd=()=>{
+        arr[gid]=ir.value
+        ir.value=''
+        dis()
+        btnr[1].style.display='none'
+        btnr[0].style.display='inline-block'
+      }
+      let del=(el)=>{
+        arr.splice(el,1)
+        dis()
+      }
+    </script>
+  </body>
+</html>

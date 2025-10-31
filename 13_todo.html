@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" placeholder="uid" name="uid" />
+    <input type="text" placeholder="title" name="title" />
+    <textarea></textarea>
+    <input type="date" name="date" />
+    <button onclick="add()">add</button>
+    <button onclick="upd()" style="display: none">upd</button>
+    <table></table>
+    <table></table>
+    <script>
+      let ipr = document.querySelectorAll("input");
+      let tar = document.querySelector("textarea");
+      let tblr = document.querySelectorAll("table");
+      let btr = document.querySelectorAll("button");
+      let eid = -1;
+      let dis = () => {
+        let arr = localStorage.getItem("task");
+        if (arr) {
+          arr = JSON.parse(arr);
+          if (arr.length != 0) {
+            s =
+              "<tr><th colspan=8>Pending works</th></tr><tr><th>SNO</th><th>UID</th><th>TITLE</th><th>DESC</th><th>deadline</th><th></th><th></th><th></th><tr>";
+            for (let i = 0; i < arr.length; i++) {
+              s += `<tr><td>${i + 1}</td><td>${arr[i].uid}</td><td>${
+                arr[i].title
+              }</td><td>${arr[i].txa}</td><td>${
+                arr[i].date
+              }</td><td><button onclick="edit(${i})">edit</button></td><td><button onclick="del(${i})">delete</button></td><td><button onclick="cmp(${i})">completed</button></td></tr>`;
+            }
+            tblr[0].innerHTML = s;
+            tblr[0].border = 2;
+          } else {
+            tblr[0].innerHTML = "";
+            tblr[0].border = 0;
+          }
+        } else {
+          tblr[0].innerHTML = "";
+          tblr[0].border = 0;
+        }
+      };
+      let add = () => {
+        let obj = {};
+        for (let i = 0; i < ipr.length; i++) {
+          obj[ipr[i].name] = ipr[i].value;
+        }
+        obj.txa = tar.value;
+        let arr = localStorage.getItem("task");
+        if (arr) {
+          arr = JSON.parse(arr);
+        } else {
+          arr = [];
+        }
+        arr.push(obj);
+        localStorage.setItem("task", JSON.stringify(arr));
+        dis();
+        for (let i in ipr) {
+          ipr[i].value = "";
+        }
+        tar.value = "";
+      };
+      dis();
+      let edit = (el) => {
+        let arr = JSON.parse(localStorage.getItem("task"));
+        ipr[0].value = arr[el].uid;
+        ipr[1].value = arr[el].title;
+        ipr[2].value = arr[el].date;
+        tar.value = arr[el].txa;
+        btr[0].style.display = "none";
+        btr[1].style.display = "inline-block";
+        eid = el;
+      };
+      let upd = () => {
+        let arr = JSON.parse(localStorage.getItem("task"));
+        let obj = {};
+        for (let i in ipr) {
+          obj[ipr[i].name] = ipr[i].value;
+        }
+        obj.txa = tar.value;
+        arr[eid] = obj;
+        localStorage.setItem("task", JSON.stringify(arr));
+        dis();
+        for (let i in ipr) {
+          ipr[i].value = "";
+        }
+        tar.value = "";
+        btr[1].style.display = "none";
+        btr[0].style.display = "inline-block";
+      };
+      let del = (el) => {
+        let arr = JSON.parse(localStorage.getItem("task"));
+        arr.splice(el, 1);
+        localStorage.setItem("task", JSON.stringify(arr));
+        dis();
+      };
+      let discmp = () => {
+        let arr = localStorage.getItem("cmptask");
+        if (arr) {
+          arr = JSON.parse(arr);
+          if (arr.length != 0) {
+            s =
+              "<tr><th colspan=5>Complete works</th></tr><tr><th>SNO</th><th>UID</th><th>TITLE</th><th>DESC</th><th></th><tr>";
+            for (let i = 0; i < arr.length; i++) {
+              s += `<tr><td>${i + 1}</td><td>${arr[i].uid}</td><td>${
+                arr[i].title
+              }</td><td>${
+                arr[i].txa
+              }</td><td><button onclick="delc(${i})">delete</button></td></tr>`;
+            }
+            tblr[1].innerHTML = s;
+            tblr[1].border = 2;
+          } else {
+            tblr[1].innerHTML = "";
+            tblr[1].border = 0;
+          }
+        } else {
+          tblr[1].innerHTML = "";
+          tblr[1].border = 0;
+        }
+      };
+      let cmp = (el) => {
+        let arr = JSON.parse(localStorage.getItem("task"));
+        let cmparr = localStorage.getItem("cmptask");
+        if (cmparr) {
+          cmparr = JSON.parse(cmparr);
+        } else {
+          cmparr = [];
+        }
+        cmparr.push(arr[el]);
+        localStorage.setItem("cmptask", JSON.stringify(cmparr));
+        del(el);
+        dis();
+        discmp();
+      };
+      let delc=(el)=>{
+        let arrcmp=JSON.parse(localStorage.getItem("cmptask"))
+        arrcmp.splice(el,1)
+        localStorage.setItem('cmptask',JSON.stringify(arrcmp));
+        discmp()
+      }
+      discmp();
+    </script>
+  </body>
+</html>

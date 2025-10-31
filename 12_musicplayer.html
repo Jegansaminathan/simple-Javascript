@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+      }
+      body {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .listbox {
+        width: 65%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: aquamarine;
+      }
+      .acc_head {
+        width: 100%;
+      }
+      .tit {
+        width: 100%;
+        padding: 20px 0px;
+        font-size: x-large;
+      }
+      .accordion_drop {
+        width: 100%;
+        height: 80px;
+        padding: 0px 30px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background-color: antiquewhite;
+      }
+      p {
+        width: 70%;
+      }
+      .pl {
+        width: 7%;
+        height: 60%;
+      }
+      section {
+        height: 90%;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+      }
+      .player {
+        width: 30%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      .aimg {
+        width: 100%;
+        height: 70%;
+      }
+      .aimg img {
+        width: 100%;
+        height: 100%;
+      }
+      .controls {
+        width: 100%;
+        height: 10%;
+        background-color: beige;
+        padding: 0px 60px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      span img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="listbox"></div>
+      <div class="player">
+        <div class="aimg"><img src="./img/albumplay.jpg" alt="" /></div>
+        <div class="controls">
+          <span class="prev" onclick="bck()"
+            ><img src="./img/btnl.jpeg" alt="" /></span
+          ><span class="pp" onclick="bpp()"
+            ><img src="./img/playimg.png" /><audio src=""></audio></span
+          ><span class="next" onclick="nxt()"
+            ><img src="./img/btnr.jpeg" alt=""
+          /></span>
+        </div>
+      </div>
+    </section>
+    <script>
+      let lbr = document.getElementsByClassName("listbox");
+      let arr = [
+        {
+          tit: "Vilambara Idaiveli",
+          sub: "Hiphop Tamizha, Christopher Stanley,Sudarshan Ashok &Srinisha Jayaseelan•Vilambara Idaiveli ",
+          asrc: "./audio/Vilambara Idaiveli (From _Imaikkaa Nodigal_).mp3",
+        },
+        {
+          tit: "Senjitaley (From 'Remo')",
+          sub: "Anirudh Ravichander & Vignesh ShivN • Senjitaley (From 'Remo') • 2016",
+          asrc: "./audio/Senjitaley (From _Remo_).mp3",
+        },
+        {
+          tit: "Naan Nee",
+          sub: "Santhosh Narayanan , Shakthishree Gopalan & Dhee • Madras (Original Motion Picture Soundtrack)",
+          asrc: "./audio/Naan Nee.mp3",
+        },
+        {
+          tit: "Visiri",
+          sub: "Sid Sriram & Shashaa Tirupati • Enai Noki Paayum Thota (Original Motion Picture Soundtrack)",
+          asrc: "./audio/Visiri.mp3",
+        },
+        {
+          tit: "Sakkarakatti",
+          sub: "Hiphop Tamizha • Meesaya Murukku • 2017",
+          asrc: "./audio/Sakkarakatti.mp3",
+        },
+      ];
+      let dis = () => {
+        s = "";
+        for (let i = 0; i < arr.length; i++) {
+          s =
+            s +
+            `<div class="acc_head">
+        <button class="tit" onclick="fun(${i})">${arr[i].tit} <i class="fa-solid fa-angle-down"></i></button>
+        <div class="accordion_drop" style="display: none;">
+          <p>${arr[i].sub}
+          </p>
+          <button class="pl" onclick='selaudio(${i})'><i class="fa-solid fa-play"></i></button>
+        </div>
+      </div>`;
+        }
+        lbr[0].innerHTML = s;
+      };
+
+      dis();
+
+      let p = 0;
+      let acangr = document.querySelectorAll(".tit i");
+      let acdr = document.getElementsByClassName("accordion_drop");
+      let fun = (ind) => {
+        if (p == ind) {
+          if (acangr[p].className == "fa-solid fa-angle-down") {
+            acdr[p].style.display = "flex";
+            acangr[p].className = "fa-solid fa-angle-up";
+          } else {
+            acangr[p].className = "fa-solid fa-angle-down";
+            acdr[p].style.display = "none";
+          }
+        } else {
+          acangr[p].className = "fa-solid fa-angle-down";
+          acdr[p].style.display = "none";
+          acangr[ind].className = "fa-solid fa-angle-up";
+          acdr[ind].style.display = "flex";
+          p = ind;
+        }
+      };
+      let stsaudio = false;
+      let audio = document.querySelector(".pp audio");
+      let ppr = document.querySelector(".pp img");
+      let i = 0;
+      let selaudio = (el) => {
+        audio.src = arr[el].asrc;
+        audio.play();
+        stsaudio = true;
+        ppr.src = "./img/pauseimg.png";
+        i = el;
+      };
+      let bpp = () => {
+        if (stsaudio) {
+          ppr.src = "./img/playimg.png";
+          audio.pause();
+          stsaudio = false;
+        } else {
+          if (!audio.getAttribute("src")) {
+            audio.src = arr[0].asrc;
+            i = 0;
+          }
+          ppr.src = "./img/pauseimg.png";
+          audio.play();
+          stsaudio = true;
+        }
+      };
+      audio.onended = () => {
+        i++;
+        i = i % arr.length;
+        selaudio(i);
+      };
+      let bck = () => {
+        if (i > 0) {
+          i--;
+        } else {
+          i = arr.length - 1;
+        }
+        selaudio(i);
+      };
+      let nxt = () => {
+        i++;
+        i = i % arr.length;
+        selaudio(i);
+      };
+    </script>
+  </body>
+</html>

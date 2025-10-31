@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <div><span>00</span>:<span>00</span>:<span>00</span></div>
+      <div>
+        <button onclick="start()">start</button
+        ><button onclick="stop()">stop</button
+        ><button onclick="reset()">reset</button>
+      </div>
+    </div>
+    <script>
+      let sr = document.querySelectorAll("span");
+      let s = 0,
+        m = 59,
+        h = 0;
+      let iid = -1;
+      let tf = () => {
+        s++
+        if(s==60){
+            m++
+            s=0
+        }
+        if(m==60){
+            h++
+            m=0
+        }
+        if(h==25){
+          h = 0;
+          m = 0;
+          s = 0;
+        }
+          
+        sr[0].innerHTML = h < 10 ? `0${h}` : h;
+        sr[1].innerHTML = m < 10 ? `0${m}` : m;
+        sr[2].innerHTML = s < 10 ? `0${s}` : s;
+      };
+      let start = () => {
+        if (iid == -1) {
+          iid = setInterval(tf, 1000);
+        }
+      };
+      let stop = () => {
+        clearInterval(iid);
+        iid = -1;
+      };
+      let reset = () => {
+        clearInterval(iid);
+        iid = -1;
+        s = 0;
+        m = 0;
+        h = 0;
+        sr[0].innerHTML = h < 10 ? `0${h}` : h;
+        sr[1].innerHTML = m < 10 ? `0${m}` : m;
+        sr[2].innerHTML = s < 10 ? `0${s}` : s;
+      };
+    </script>
+  </body>
+</html>
