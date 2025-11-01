@@ -120,7 +120,9 @@
         </div>
         <div class="innerform">
           <label for="pass">Password</label>
-          <input type="text" id="pass" onkeyup="fun4(this)" onblur="pb()" class="inp" />
+          <input type="password" id="pass" onkeyup="fun4(this)" onblur="pb()" class="inp" />
+          <i onclick="passtotxt(1)" class="fa-solid fa-eye-slash"></i>
+          <i onclick="passtotxt(2)"class="fa-solid fa-eye" style="display: none;"></i>
           <i
             class="fa-solid fa-circle-check fa-bounce"
             style="color: #2bff00; display: none"
@@ -237,12 +239,12 @@
       };
       let pb = () => {
         if (irfl) {
-          tic[6].style.display = "block";
-          tic[7].style.display = "none";
+          tic[8].style.display = "block";
+          tic[9].style.display = "none";
           tosubmit4 = true
         } else {
-          tic[7].style.display = "block";
-          tic[6].style.display = "none";
+          tic[9].style.display = "block";
+          tic[8].style.display = "none";
           tosubmit4 = false;
         }
       };
@@ -266,6 +268,19 @@
           event.preventDefault();
         }
       });
+      let passir=document.getElementsByClassName('inp')[3]
+      let passtotxt=(e)=>{
+        if(e==1){
+          tic[6].style.display = "none";
+          tic[7].style.display = "block";
+          passir.type='text'
+        }
+        else{
+          tic[7].style.display = "none";
+          tic[6].style.display = "block";
+          passir.type='password'
+        }
+      }
     </script>
   </body>
 </html>
