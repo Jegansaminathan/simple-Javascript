@@ -143,25 +143,30 @@
 
     <script>
       let tic = document.querySelectorAll("i");
-      let tosubmit = true;
+      let tosubmit1 = true;
+      let tosubmit2 = true;
+      let tosubmit3 = true;
+      let tosubmit4 = true;
       let fun1 = (e) => {
         if (/[a-z]{4,}/i.test(e.value)) {
           tic[0].style.display = "block";
           tic[1].style.display = "none";
+          tosubmit1 = true
         } else {
           tic[1].style.display = "block";
           tic[0].style.display = "none";
-          tosubmit = false;
+          tosubmit1 = false;
         }
       };
       let fun2 = (e) => {
         if (/[6-9][0-9]{9}/i.test(e.value)) {
           tic[2].style.display = "block";
           tic[3].style.display = "none";
+          tosubmit2 = true
         } else {
           tic[3].style.display = "block";
           tic[2].style.display = "none";
-          tosubmit = false;
+          tosubmit2 = false;
         }
       };
       let fun3 = (e) => {
@@ -172,10 +177,12 @@
         ) {
           tic[4].style.display = "block";
           tic[5].style.display = "none";
+          tosubmit3 = true
         } else {
           tic[5].style.display = "block";
           tic[4].style.display = "none";
-          tosubmit = false;
+          tosubmit3 = false;
+          
         }
       };
       let validr = document.querySelectorAll(".pvalid p");
@@ -213,10 +220,17 @@
           fl = false;
         }
         if (/[^A-za-z0-9$.^!#@]+/.test(e.value)) {
+          if(/[\s]/.test(e.value)){
+            validr[1].style.display = "block";
+            fl = false;
+          }
+          else{
           validr[2].innerHTML = "enter the give special char";
           validr[2].style.display = "block";
           fl = false;
-        } else {
+        }
+        }
+         else {
           validr[2].innerHTML = "specal symbols $.^!#@";
         }
         irfl = fl;
@@ -225,22 +239,29 @@
         if (irfl) {
           tic[6].style.display = "block";
           tic[7].style.display = "none";
+          tosubmit4 = true
         } else {
           tic[7].style.display = "block";
           tic[6].style.display = "none";
-          tosubmit = false;
+          tosubmit4 = false;
         }
       };
       document.querySelector("form").addEventListener("submit", (event) => {
         let inputs = document.querySelectorAll(".inp");
         let tosub2=true
         inputs.forEach((inp) => {
-          if (inp.value.trim() === "") {
+          if (inp.value.trim() == "") {
             tosub2 = false;
             console.log(tosub2);
           }
         });
-        tosubmit=tosub2 && tosubmit
+        console.log(tosub2,typeof(tosub2))
+        console.log(tosubmit1)
+        console.log(tosubmit2)
+        console.log(tosubmit3)
+        console.log(tosubmit4)
+        let tosubmit=tosub2 && tosubmit1 && tosubmit2 && tosubmit3 && tosubmit4
+        console.log(tosubmit,typeof(tosubmit))
         if (!tosubmit) {
           event.preventDefault();
         }
