@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        padding: 0%;
+        margin: 0%;
+        box-sizing: border-box;
+      }
+      body {
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(
+          50deg,
+          hsl(0deg 100% 20%) 0%,
+          hsl(15deg 90% 28%) 3%,
+          hsl(23deg 92% 36%) 8%,
+          hsl(28deg 95% 43%) 13%,
+          hsl(32deg 100% 50%) 21%,
+          hsl(38deg 100% 50%) 31%,
+          hsl(43deg 100% 50%) 43%,
+          hsl(48deg 100% 50%) 57%,
+          hsl(53deg 100% 50%) 70%,
+          hsl(45deg 100% 50%) 81%,
+          hsl(36deg 100% 50%) 90%,
+          hsl(26deg 100% 50%) 96%,
+          hsl(13deg 100% 50%) 100%
+        );
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .form {
+        width: 40%;
+        height: 90%;
+        border: 4px solid rgb(255, 0, 0);
+        border-radius: 10%;
+        background-color: rgba(83, 152, 213, 0.793);
+      }
+      form {
+        margin: 5% 10%;
+        width: 80%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      .innerform {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      input {
+        width: 250px;
+        height: 50px;
+        font-size: x-large;
+        padding: 10px;
+        border-radius: 20px;
+        border: none;
+      }
+      input:focus {
+        outline: none;
+      }
+      label {
+        font-size: x-large;
+      }
+      i {
+        font-size: x-large;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form">
+      <form action="./12_musicplayer.html">
+        <div class="innerform">
+          <label for="name">Name</label>
+          <input type="text" id="name" onblur="fun1(this)" class="inp"/>
+          <i
+            class="fa-solid fa-circle-check fa-bounce"
+            style="color: #2bff00; display: none"
+          ></i>
+          <i
+            class="fa-solid fa-circle-xmark fa-bounce"
+            style="color: #ff0000; display: none"
+          ></i>
+        </div>
+        <div class="innerform">
+          <label for="pno">phno</label>
+          <input type="text" id="pno" onblur="fun2(this)" class="inp"/>
+          <i
+            class="fa-solid fa-circle-check fa-bounce"
+            style="color: #2bff00; display: none"
+          ></i>
+          <i
+            class="fa-solid fa-circle-xmark fa-bounce"
+            style="color: #ff0000; display: none"
+          ></i>
+        </div>
+        <div class="innerform">
+          <label for="email">Email</label>
+          <input type="text" id="email" onblur="fun3(this)"class="inp" />
+          <i
+            class="fa-solid fa-circle-check fa-bounce"
+            style="color: #2bff00; display: none"
+          ></i>
+          <i
+            class="fa-solid fa-circle-xmark fa-bounce"
+            style="color: #ff0000; display: none"
+          ></i>
+        </div>
+        <div class="innerform">
+          <label for="pass">Password</label>
+          <input type="text" id="pass" onkeyup="fun4(this)" onblur="pb()" class="inp" />
+          <i
+            class="fa-solid fa-circle-check fa-bounce"
+            style="color: #2bff00; display: none"
+          ></i>
+          <i
+            class="fa-solid fa-circle-xmark fa-bounce"
+            style="color: #ff0000; display: none"
+          ></i>
+        </div>
+        <div class="pvalid">
+          <p>atleast one cap</p>
+          <p>no space</p>
+          <p>specal symbols $.^!#@</p>
+          <p>one digit</p>
+          <p>len >6</p>
+        </div>
+        <input type="submit" />
+      </form>
+    </div>
+
+    <script>
+      let tic = document.querySelectorAll("i");
+      let tosubmit = true;
+      let fun1 = (e) => {
+        if (/[a-z]{4,}/i.test(e.value)) {
+          tic[0].style.display = "block";
+          tic[1].style.display = "none";
+        } else {
+          tic[1].style.display = "block";
+          tic[0].style.display = "none";
+          tosubmit = false;
+        }
+      };
+      let fun2 = (e) => {
+        if (/[6-9][0-9]{9}/i.test(e.value)) {
+          tic[2].style.display = "block";
+          tic[3].style.display = "none";
+        } else {
+          tic[3].style.display = "block";
+          tic[2].style.display = "none";
+          tosubmit = false;
+        }
+      };
+      let fun3 = (e) => {
+        if (
+          /[a-z0-9]+[.]?[a-z0-9]+[@][a-z]{3,}[.](com|edu|org|asia|in|co.in)/i.test(
+            e.value
+          )
+        ) {
+          tic[4].style.display = "block";
+          tic[5].style.display = "none";
+        } else {
+          tic[5].style.display = "block";
+          tic[4].style.display = "none";
+          tosubmit = false;
+        }
+      };
+      let validr = document.querySelectorAll(".pvalid p");
+      let irfl = false;
+      let fun4 = (e) => {
+        let fl = true;
+        if (/[A-Z]+/.test(e.value)) {
+          validr[0].style.display = "none";
+        } else {
+          validr[0].style.display = "block";
+          fl = false;
+        }
+        if (/^[\S]+$/.test(e.value.trim())) {
+          validr[1].style.display = "none";
+        } else {
+          validr[1].style.display = "block";
+          fl = false;
+        }
+        if (/[$.^!#@]+/.test(e.value)) {
+          validr[2].style.display = "none";
+        } else {
+          validr[2].style.display = "block";
+          fl = false;
+        }
+        if (/[0-9]+/.test(e.value)) {
+          validr[3].style.display = "none";
+        } else {
+          validr[3].style.display = "block";
+          fl = false;
+        }
+        if (e.value.length > 6) {
+          validr[4].style.display = "none";
+        } else {
+          validr[4].style.display = "block";
+          fl = false;
+        }
+        if (/[^A-za-z0-9$.^!#@]+/.test(e.value)) {
+          validr[2].innerHTML = "enter the give special char";
+          validr[2].style.display = "block";
+          fl = false;
+        } else {
+          validr[2].innerHTML = "specal symbols $.^!#@";
+        }
+        irfl = fl;
+      };
+      let pb = () => {
+        if (irfl) {
+          tic[6].style.display = "block";
+          tic[7].style.display = "none";
+        } else {
+          tic[7].style.display = "block";
+          tic[6].style.display = "none";
+          tosubmit = false;
+        }
+      };
+      document.querySelector("form").addEventListener("submit", (event) => {
+        let inputs = document.querySelectorAll(".inp");
+        let tosub2=true
+        inputs.forEach((inp) => {
+          if (inp.value.trim() === "") {
+            tosub2 = false;
+            console.log(tosub2);
+          }
+        });
+        tosubmit=tosub2 && tosubmit
+        if (!tosubmit) {
+          event.preventDefault();
+        }
+      });
+    </script>
+  </body>
+</html>
